@@ -1,0 +1,14 @@
+body{
+    background-color: rgba(169, 165, 160);
+    text-align: center;
+    background-image: url('house.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: calc();
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: whitesmoke;
+    font-size: larger;
+    font: optional;
+}

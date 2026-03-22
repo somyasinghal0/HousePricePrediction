@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='favicon.ico')}}">
+    
+    <title>House Price Prediction</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <h1>{{house_value}}</h1>
+    <hr>
+    <h1> Predict house Price</h1>
+    <form action="/" method="POST">
+        <label for="float-value">longitude</label>
+        <br>
+        <input type="number" step="any" placeholder="Enter Here" required="True" name="longitude">
+        <br>
+        <br>
+
+        <label for="float-value">latitude</label>
+        <br>
+        <input type="number" step="any" placeholder="Enter Here" required="True" name="latitude">
+        <br>
+        <br>
+
+        <label for="float-value">housing_median_age</label>
+        <br>
+        <input type="number" step="any" placeholder="Enter Here" required="True" name="housing_median_age">
+        <br>
+        <br>
+
+        <label for="float-value">total_rooms</label>
+        <br>
+        <input type="number" step="any" placeholder="Enter Here" required="True" name="total_rooms">
+        <br>
+        <br>
+
+        <label for="float-value">total_bedrooms</label>
+        <br>
+        <input type="number" step="any" placeholder="Enter Here" required="True" name="total_bedrooms">
+        <br>
+        <br>
+
+        <label for="float-value">population</label>
+        <br>
+        <input type="number" step="any" placeholder="Enter Here" required="True" name="population">
+        <br>
+        <br>
+
+        <label for="float-value">households</label>
+        <br>
+        <input type="number" step="any" placeholder="Enter Here" required="True" name="households">
+        <br>
+        <br>
+
+        <label for="float-value">median_income</label>
+        <br>
+        <input type="number" step="any" placeholder="x100k" required="True" name="median_income">
+        <br>
+        <br>
+
+        <label for="dropdown">Select Ocean Proximity:</label>
+            <select id="dropdown" name="ocean_proximity">
+                <option value="NEAR BAY">NEAR BAY</option>
+                <option value="INLAND">INLAND</option>
+                <option value="ISLAND">ISLAND</option>
+                <option value="NEAR OCEAN">NEAR OCEAN</option>
+            </select>
+        <br>
+        <br>
+
+        <button type="submit">Get Price</button>
+
+    </form>
+    <br>
+    <hr>
+    <br>
+
+    {% for i in range(30) %}
+    <br>
+    {% endfor %}
+
+</body>
+</html>

@@ -8,26 +8,27 @@ final_model_reloaded = joblib.load('House_Price.pkl')
 
 # User interface
 
-print('Provide the details following\n\n')
-longitude = int(input('longitude: '))
-latitude = int(input('latitude: '))
-housing_median_age = int(input('housing_median_age: '))
-total_rooms = int(input('total_rooms: '))
-total_bedrooms = int(input('total_bedrooms: '))
-population = int(input('population: '))
-households = int(input('households: '))
-median_income = int(input('median_income: '))
-ocean_proximity = input('ocean_proximity: ')
+def predict_price(longitude, latitude, housing_median_age,
+                  total_rooms, total_bedrooms, population,
+                  households, median_income, ocean_proximity):
 
-# prediction logic
-data = np.array([longitude, latitude, housing_median_age, total_rooms, total_bedrooms, population, households, median_income, ocean_proximity]).reshape(1,-1)
+    valid_categories = ["INLAND", "NEAR BAY", "NEAR OCEAN", "ISLAND"]
 
-clms = ['longitude', 'latitude', 'housing_median_age', 'total_rooms', 'total_bedrooms', 'population', 'households', 'median_income', 'ocean_proximity']
+    if ocean_proximity not in valid_categories:
+        ocean_proximity = "INLAND"
 
-df = pd.DataFrame(data, columns=clms)
+    # prediction logic
+    data = np.array([
+        longitude, latitude, housing_median_age, total_rooms, total_bedrooms, 
+        population, households, median_income, ocean_proximity]).reshape(1, -1)
 
-# prediction
-result = final_model_reloaded.predict(df)
+    clms = [
+        'longitude', 'latitude', 'housing_median_age', 'total_rooms', 'total_bedrooms', 
+        'population', 'households', 'median_income', 'ocean_proximity']
 
-# print the prediction
-print(f'\n\t\t This House should be Around: {result}')
+    df = pd.DataFrame(data, columns=clms)
+
+    # prediction
+    result = final_model_reloaded.predict(df)
+
+    return result[0]
