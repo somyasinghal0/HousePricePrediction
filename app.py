@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 import main
-from main import final_model_reloaded as model
 import numpy as np
 import pandas as pd
 
@@ -9,7 +8,7 @@ app = Flask(__name__)
 @app.route("/", methods= ["GET", "POST"])
 def Home():
     result = None
-    
+
     if request.method == "POST":
         longitude = float(request.form.get("longitude"))
         latitude = float(request.form.get("latitude"))
@@ -21,18 +20,11 @@ def Home():
         median_income = float(request.form.get("median_income"))
         ocean_proximity = request.form.get("ocean_proximity")
 
-        # prediction logic
-        data = np.array([
-            longitude, latitude, housing_median_age,total_rooms, total_bedrooms, 
-            population,households, median_income, ocean_proximity]).reshape(1, -1)
+        result = main.predict_price(
+            longitude, latitude, housing_median_age, total_rooms, total_bedrooms,
+            population, households, median_income, ocean_proximity
+        )
 
-        clms = [
-            'longitude', 'latitude', 'housing_median_age', 'total_rooms', 'total_bedrooms', 
-            'population', 'households', 'median_income', 'ocean_proximity']
-
-        df = pd.DataFrame(data, columns=clms)
-
-        result = model.predict(df)
         result = f"Your House Price is Around ₹ {result}"
 
     return render_template("index.html", house_value=result)
