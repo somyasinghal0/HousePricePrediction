@@ -3,3 +3,5 @@
 data/
 exp/
 files/
+myenv/
+__pycache__/
