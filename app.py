@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/", methods= ["GET", "POST"])
 def Home():
-    result = None
+    result = ""
 
     if request.method == "POST":
         longitude = float(request.form.get("longitude"))
